@@ -34,7 +34,7 @@ Este projeto demonstra o funcionamento de api rest referente a cadastro de usuá
 * 4º Primeiro deve realizar o cadastro da comic, em seguida realizar o cadastro do usuário.
 *
 *
-*{
+* -{
 *	"nome": "NOME",
 *	"cpf": "CPF",
 *	"dataNascimento": "yyyy-MM-dd",
@@ -42,4 +42,4 @@ Este projeto demonstra o funcionamento de api rest referente a cadastro de usuá
 *	"livro": {
 *		"comicId": "comicId"
 *	}
-*}
+* -}
