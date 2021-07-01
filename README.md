@@ -19,7 +19,6 @@ Este projeto demonstra o funcionamento de api rest referente a cadastro de usuá
 * 1º Clone este projeto em sua máquina e importe-o na sua IDE de preferência. 
 * 2º Para realização dos testes utilize o Postman.
 * 3º Segue abaixo algumas comicId que poderão ser utilizadas no teste:
-* 
 * 1158
 * 1003
 * 1332
@@ -30,16 +29,13 @@ Este projeto demonstra o funcionamento de api rest referente a cadastro de usuá
 * 22582
 * 93166
 * 52646
-* 
 * 4º Primeiro deve realizar o cadastro da comic, em seguida realizar o cadastro do usuário.
-*
-*
-* -{
+* [{
 *	"nome": "NOME",
 *	"cpf": "CPF",
 *	"dataNascimento": "yyyy-MM-dd",
 *	"email" :"EMAIL",
-*	"livro": {
+*	"livro": [{
 *		"comicId": "comicId"
-*	}
-* -}
+*	}]
+* }]
