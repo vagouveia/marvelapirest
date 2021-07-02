@@ -49,9 +49,9 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/buscar/{codigo}")
-	public Usuario listarUsuario(@PathVariable Long codigo) throws UsuarioNaoEncontradoException{
+	public Usuario listaUsuario(@PathVariable Long codigo) throws UsuarioNaoEncontradoException{
 		
-		return usuarioService.listarUsuario(codigo);
+		return usuarioService.listaUsuario(codigo);
 		
 	}
 	

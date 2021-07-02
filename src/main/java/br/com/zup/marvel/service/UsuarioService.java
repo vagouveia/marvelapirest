@@ -17,76 +17,71 @@ import br.com.zup.marvel.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-	
-	
+
 	private UsuarioRepository usuarioRepository;
-	
+
 	private final UsuarioMapper usuarioMapper = UsuarioMapper.INSTANCE;
-	
+
 	@Autowired
-	private UsuarioService (UsuarioRepository usuarioRepository) {
+	private UsuarioService(UsuarioRepository usuarioRepository) {
 		this.usuarioRepository = usuarioRepository;
 	}
-	
+
 	public UsuarioService() {
 	}
 
 	public UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) throws CpfRegistradoException, EmailRegistradoException {
-		
+
 		verificaCpfCadastrado(usuarioDTO.getCpf());
-		VerificaEmailCadastrado(usuarioDTO.getEmail());		
-		
+		VerificaEmailCadastrado(usuarioDTO.getEmail());
+
 		Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
 		Usuario usuarioCriado = usuarioRepository.save(usuario);
-		
-		return usuarioMapper.toDTO(usuarioCriado);	
-		
+
+		return usuarioMapper.toDTO(usuarioCriado);
+
 	}
-	
-	public List<UsuarioDTO> listarTodos(){
-		
-		return usuarioRepository.findAll().stream().map(usuario -> usuarioMapper.toDTO(usuario)).collect(Collectors.toList());
-		
+
+	public List<UsuarioDTO> listarTodos() {
+
+		return usuarioRepository.findAll().stream().map(usuario -> usuarioMapper.toDTO(usuario))
+				.collect(Collectors.toList());
+
 	}
-	
+
 	public void verificaCpfCadastrado(String cpf) throws CpfRegistradoException {
-		
+
 		Optional<Usuario> usuarioCpf = usuarioRepository.findByCpf(cpf);
-		
-		if(usuarioCpf.isPresent()) {
-			
+
+		if (usuarioCpf.isPresent()) {
+
 			throw new CpfRegistradoException(cpf);
-			
-		}
-	}
-	
-	public void VerificaEmailCadastrado(String email) throws EmailRegistradoException {
-		
-		Optional<Usuario> usuarioEmail = usuarioRepository.findByEmail(email);
-		
-		if(usuarioEmail.isPresent()) {
-			
-			throw new EmailRegistradoException(email);
-			
+
 		}
 	}
 
-	public Usuario listarUsuario(Long codigo) throws UsuarioNaoEncontradoException{
-		
-		VerificaUsuarioCadastrado(codigo);
-		
-		return usuarioRepository.findByCodigo(codigo);
-	}
-	
-	public void VerificaUsuarioCadastrado(Long codigo) throws UsuarioNaoEncontradoException {
-		
-		Usuario usuario = usuarioRepository.findByCodigo(codigo);
-		
-		if(usuario == null) {
-			
-			throw new UsuarioNaoEncontradoException(codigo);
-			
+	public void VerificaEmailCadastrado(String email) throws EmailRegistradoException {
+
+		Optional<Usuario> usuarioEmail = usuarioRepository.findByEmail(email);
+
+		if (usuarioEmail.isPresent()) {
+
+			throw new EmailRegistradoException(email);
+
 		}
+	}
+
+	public Usuario listaUsuario(Long codigo) throws UsuarioNaoEncontradoException {
+
+		Usuario usuario = usuarioRepository.findByCodigo(codigo);
+
+		if (usuario == null) {
+
+			throw new UsuarioNaoEncontradoException(codigo);
+
+		}
+		
+		return usuario;
 	}
 
 }

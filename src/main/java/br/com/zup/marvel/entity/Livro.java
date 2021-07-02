@@ -45,13 +45,6 @@ public class Livro implements Serializable {
 	@Column(name = "DIA_DESCONTO")
 	private String diaDesconto;
 	
-	/*
-	 * @OneToMany(targetEntity = Usuario.class, mappedBy = "livro", fetch =
-	 * FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE})
-	 * 
-	 * @Column(name = "COD_USUARIO") private List<Usuario> usuarios;
-	 */
-	
 	public Livro() {
 		super();
 	}

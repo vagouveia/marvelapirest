@@ -60,14 +60,11 @@ public class LivroService {
 			
 			return livroMapper.toDTO(livro);
 					
-		}
-		
-		if(!livroCadastrado.isPresent()) {
+		} else {
 			
 			throw new LivroNaoCadastradoException(comicId);
 		}
 				
-		return null;
 	}
 	
 }
