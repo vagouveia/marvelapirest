@@ -44,10 +44,30 @@ public class MarvelController {
 			Integer diaSemanaIbsn = IbsnUtils.retornaDiaSeanaIbsn(objComicDTO);
 			String autorLista = LivroUtils.converterListaAutoresParaString(objComicDTO);
 			Double preco = LivroUtils.converterListaPrecoParaDouble(objComicDTO);
-			String titulo = LivroUtils.limitarQuantidadeString(objComicDTO.getTitle());
 			String autor = LivroUtils.limitarQuantidadeString(autorLista);
-			String descricao = LivroUtils.limitarQuantidadeString(objComicDTO.getDescription());
 			
+			if(objComicDTO.getTitle() != null) {
+				
+				String titulo = LivroUtils.limitarQuantidadeString(objComicDTO.getTitle());
+				livroDTO.setTitulo(titulo);	
+
+			} else {
+				
+				livroDTO.setTitulo(null);	
+				
+			}
+			
+			if(objComicDTO.getDescription() != null) {
+				
+				String descricao = LivroUtils.limitarQuantidadeString(objComicDTO.getDescription());
+				livroDTO.setDescricao(descricao);
+
+			} else {
+				
+				livroDTO.setDescricao(null);
+
+			}
+						
 			if(diaSemanaIbsn == diaSemana) {
 				
 				preco -= preco*0.1;
@@ -59,12 +79,10 @@ public class MarvelController {
 			}
 			
 			livroDTO.setComicId(objComicDTO.getId());
-			livroDTO.setTitulo(titulo);	
 			livroDTO.setDiaDesconto(nomeSemana);
 			livroDTO.setAutor(autor);
 			livroDTO.setPreco(preco);
 			livroDTO.setIbsn(objComicDTO.getIsbn());
-			livroDTO.setDescricao(descricao);
 			
 			livroService.salvarLivro(livroDTO);		
 			
